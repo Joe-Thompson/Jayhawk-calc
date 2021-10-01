@@ -6,12 +6,12 @@
 
 int main (void)
 {
-	bool backpackPromo = false;    // boolean to check if backpack promo coupon will be added on line 118
-    const float tierOne = .05f, tierTwo = .075f, tierThree = .105f, tierFour = .155f, tierFive = .175f;   	// float constants for discount tiers
-	const float pencilPrice = .02f, notebookPrice = .89f, backpackPrice = 39.99f;		                 	// float constants for base price of items
+	bool backpackPromo = false;		// boolean to check if backpack promo coupon will be added on line 132
+    const float tierOne = .05f, tierTwo = .075f, tierThree = .105f, tierFour = .155f, tierFive = .175f;		// float constants for discount tiers
+	const float pencilPrice = .02f, notebookPrice = .89f, backpackPrice = 39.99f;		// float constants for base price of items
 
 	int pencils = 0, notebooks = 0, backpacks = 0, cartItems = 0;		// variables for user input
-	float pencilTotal, notebookTotal, backpackTotal, cartTotal, discountRate, cartDiscount, cartAfterDisc;	 // uninitialized floats for item totals to be displayed
+	float pencilTotal, notebookTotal, backpackTotal, cartTotal, discountRate, cartDiscount, cartAfterDisc;		// uninitialized floats for item totals to be displayed
 
 	printf("\n\nJayhawk Enterprises Shopping Cart Calculator by Joe Thompson\n\n");
 
@@ -25,9 +25,9 @@ int main (void)
 	do
     {
         printf("\n\nNumber of Pencils (0-100)   ");		// prompting the user for input using printf function
-	    scanf("%d", &pencils);  						//  capturing the user's input with the scanf function
+	    scanf("%d", &pencils);		//  capturing the user's input with the scanf function
 
-        if (pencils < 0 || pencils > 100)
+        if (pencils < 0 || pencils > 100)		// if statement to ensure user input is within range for item
         {
             printf("\a\tOut of range! Enter 0 through 100");
         }
@@ -59,10 +59,12 @@ int main (void)
 
     } while (backpacks < 0 || backpacks > 10);
 
-	if (backpacks > 4)  // applies the promo if user selects 5 or more backpacks
+
+	if (backpacks > 5)  // applies the promo if user purchases more than five backpacks
 	{
 		backpackPromo = true;
 	}
+	
 
 	cartItems = pencils + notebooks + backpacks;
   /*
@@ -92,7 +94,7 @@ int main (void)
 		discountRate = tierOne;
 	}
 	/*
-		Lines 101 - 103 use typecasting
+		Lines 103 - 105 use typecasting
 		1: we should never make the compiler work harder than it has to
 		2: as a programmer I want to know how my data is interacting
 		   with each other, not leaving it up to the compiler to decided
@@ -103,26 +105,26 @@ int main (void)
 	backpackTotal = (float) backpacks * backpackPrice;
 	cartTotal = pencilTotal + notebookTotal + backpackTotal;
 
-    cartDiscount = discountRate * cartTotal; 						// calculating the initial discount
-	cartDiscount = (int) (cartDiscount * 100.0f + 0.5f) / 100.0f;  // rounding the above calculation to two decimal positions
-	cartAfterDisc = cartTotal - cartDiscount;                      // applying discount to current cart total
+    cartDiscount = discountRate * cartTotal;		// calculating the initial discount
+	cartDiscount = (int) (cartDiscount * 100.0f + 0.5f) / 100.0f;		// rounding the above calculation to two decimal positions
+	cartAfterDisc = cartTotal - cartDiscount;		// applying discount to current cart total
 
 	printf("\n\n\nYour Itemized Receipt");
 
-	// lines 113 - 115 use a - in the conversion specifier to display left justification
+	// lines 115 - 117 use a - in the conversion specifier to display left justification
 	printf("\n\nNumber of Pencils  (0-100)  %-d\n", pencils);
 	printf("Number of Notebooks (0-20)  %-d\n", notebooks);
 	printf("Number of Backpacks (0-10)  %-d\n\n", backpacks);
 
 	printf("Number of Items in Shopping Cart:%7d\n\n", cartItems);
 
-	// lines 120 - 128 make use of the minimum field width and precision options of the conversion specifiers
+	// lines 123 - 130 make use of the minimum field width and precision options of the conversion specifiers
 	printf("Amount Owed for Pencils:\t $%6.2f", pencilTotal);
 	printf("\nAmount Owed for Notebooks:\t $%6.2f", notebookTotal);
 	printf("\nAmount Owed for Backpacks:\t $%6.2f\n", backpackTotal);
 
 	printf("\nAmount Owed before Discount:\t $%6.2f\n", cartTotal);
-    printf("Discount Rate: %4.3f\n", discountRate);
+    printf("Discount Rate: %.3f\n", discountRate);
 	printf("Discount Amount:\t        -$%6.2f\n", cartDiscount);
 
 	printf("\nTotal Amount Owed:\t\t $%6.2f\n\n", cartAfterDisc);
