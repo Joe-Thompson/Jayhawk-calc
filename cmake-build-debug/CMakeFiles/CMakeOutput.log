@@ -1,0 +1,14 @@
+The system is: Linux - 5.13.19-200.fc34.x86_64 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/cc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/joet/mcc/C Programming/Projects/Jayhawk-calc/cmake-build-debug/CMakeFiles/3.20.2/CompilerIdC/a.out"
+
